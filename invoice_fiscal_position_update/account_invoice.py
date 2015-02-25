@@ -40,22 +40,22 @@ class account_invoice(models.Model):
             if line.product_id:
                 product = line.product_id
                 if inv_type in ('out_invoice', 'out_refund'):
-                    account = (
-                        product.property_account_income or
-                        product.categ_id.property_account_income_categ)
+                    #account = (
+                    #    product.property_account_income or
+                    #    product.categ_id.property_account_income_categ)
                     taxes = product.taxes_id
                 else:
-                    account = (
-                        product.property_account_expense or
-                        product.categ_id.property_account_expense_categ)
+                    #account = (
+                    #    product.property_account_expense or
+                    #    product.categ_id.property_account_expense_categ)
                     taxes = product.supplier_taxes_id
                 taxes = taxes or account.tax_ids
                 if fp:
-                    account = fp.map_account(account)
+                    #account = fp.map_account(account)
                     taxes = fp.map_tax(taxes)
 
                 line.invoice_line_tax_id = [(6, 0, taxes.ids)]
-                line.account_id = account.id
+                #line.account_id = account.id
             else:
                 lines_without_product.append(line.name)
 
